@@ -1,5 +1,8 @@
 package com.mms.users.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +34,31 @@ public class UserServiceImpl {
 	}
 	
 	
+    
+    public List<AppUser> users(){
+    	
+    	
+    	var users = new ArrayList<AppUser>();
+    	
+    	userRepo.allUsers().forEach(users::add);
+    	
+    	return users;
+    	
+    	
+    }
+    
+	 public List<String> regions(){
+		 
+		 List<String> regions = new ArrayList<>();
+		 
+		 this.users().stream().map(AppUser::getRegion)
+		 .forEach(regions::add);
+		 
+		 return regions;
+		 
+	 }
+	
+    
+    
+    
 }

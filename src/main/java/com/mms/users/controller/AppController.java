@@ -9,21 +9,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mms.users.domain.Region;
-import com.mms.users.service.RegionService;
+import com.mms.users.domain.AppUser;
+
 import com.mms.users.service.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/")
 @RequiredArgsConstructor
 public class AppController {
 	
 	
 	private final UserServiceImpl userServiceImpl;
 
-	private final RegionService regionService;
 	
 	
 	
@@ -42,12 +41,18 @@ public class AppController {
 	}
 	
 	
-	
-	
-	@GetMapping("login/region")
-	public List<Region> regions(){
+	@GetMapping("region")
+	public List<String> regions(){
 		
-		return regionService.allRegions();
+		return userServiceImpl.regions();
+		
+		
+	}
+	
+	@GetMapping("user")
+	public List<AppUser> users(){
+		
+		return userServiceImpl.users();
 		
 		
 	}

@@ -9,13 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-
-public class AppUser {
-
-	private Integer id;
+public class LoginDto {
+	
 	private String username;
 	private String password;
-	private String role;
 	private String region;
-	
+
 }

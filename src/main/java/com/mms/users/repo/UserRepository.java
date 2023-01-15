@@ -4,46 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import com.mms.users.domain.AppUser;
+import com.mms.users.helper.AppUserRowMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
 public class UserRepository {
+	
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
+	 private  AppUserRowMapper mapper = new AppUserRowMapper();
 
-	private final RegionRepo regionRepo;
-	   
-	List<AppUser> allUsers(){
+	
+	public List<AppUser> allUsers(){
 		
-		List<AppUser> users = new ArrayList<>();
 		
-		users.add(AppUser.builder()
-				         .id(1)
-				         .username("rami")
-				         .password("1234")
-				         .role("user")
-				         .region(regionRepo.getByid(1))
-				         .build());
-		
-		users.add(AppUser.builder()
-		         .id(1)
-		         .username("taki")
-		         .password("1234")
-		         .role("user")
-		         .region(regionRepo.getByid(2))
-		         .build());
-		
-		users.add(AppUser.builder()
-		         .id(2)
-		         .username("hamdi")
-		         .password("1234")
-		         .role("user")
-		         .region(regionRepo.getByid(2))
-		         .build());
+		var users = jdbcTemplate.query("select * from users", mapper);
+	
 		
 		return users;
 		
@@ -58,6 +44,8 @@ public class UserRepository {
 		    .filter(r->r.getUsername().equals(username))
 		    .findFirst();
 	 }
-	
+	 
+	 
+
 	
 }

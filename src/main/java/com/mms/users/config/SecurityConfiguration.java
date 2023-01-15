@@ -55,11 +55,12 @@ public class SecurityConfiguration {
          http.csrf().disable();
 		 http.cors(Customizer.withDefaults());
 		 http.authorizeHttpRequests(authz->{
-			                                authz.requestMatchers(HttpMethod.GET,"/h2-console/**").permitAll()    
-			                                .anyRequest().authenticated();
-			                                 
+			                                  authz.requestMatchers("/api/user","/api/region","/h2-console")
+			                                 .permitAll()
+			                                 .anyRequest().authenticated();
 			                                
 		                 	            }
+		 
 		                           );
 		
 		 
@@ -68,7 +69,9 @@ public class SecurityConfiguration {
 	    
 		 http.headers().frameOptions().disable();
 		 http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		return http.build();
+	
+		 return http.build();
+		
 	}
 	
 	

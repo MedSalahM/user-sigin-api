@@ -30,12 +30,12 @@ public class CustomAutnenticationProvider implements AuthenticationProvider {
 		var pwd = authentication.getCredentials().toString();
 		
 		
-		Integer region=appUser.getRegion().getId();
+		String region=appUser.getRegion();
 		
 		
 		
 		
-		Integer detail = Integer.parseInt(authentication.getDetails().toString());  
+		String detail = authentication.getDetails().toString();
 		
 		if(! region.equals(detail)  ) {
 			

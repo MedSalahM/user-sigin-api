@@ -26,9 +26,27 @@ import jakarta.servlet.http.HttpServletResponse;
 public class CustomAuthorizationFilter extends OncePerRequestFilter{
 
 	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+		
+		String p = request.getServletPath();
+		
+		boolean path = p.equals("/api/region") || p.equals("/api/login");
+		
+		return  path;
+		
+		
+		
+		
+	}
+	
+	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 	  
+		
+		
+		
+		
 		
 		String username =null;
 		String token = null;

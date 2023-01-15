@@ -20,8 +20,11 @@ import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mms.users.domain.AppUser;
+import com.mms.users.domain.LoginDto;
 import com.mms.users.security.CustomAuthenticationManager;
 import com.mms.users.service.UserServiceImpl;
 
@@ -38,30 +41,43 @@ public class CustomAuhenticationFilter extends  UsernamePasswordAuthenticationFi
 	
 	
 	
+	
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
 		
 		
+		 LoginDto login=LoginDto.builder().username(request.getParameter("username"))
+				                          .password(request.getParameter("password"))
+				                          .region(request.getParameter("region")).build();
+		
+	   
+		 System.out.println(login);
+		
+	    String username = login.getUsername();
+		
+		String password = login.getPassword();
+		String region = login.getRegion();
 		
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String regionId = request.getParameter("regionId");
- 		
+		
+		
 		
 		UsernamePasswordAuthenticationToken auth = 
 				 new UsernamePasswordAuthenticationToken(username, password);
 	   
 	
-		auth.setDetails(regionId);
+		auth.setDetails(region);
 		
 		Authentication authenticated = authMan.authenticate(auth);
-	
-		
 		
 		
 		return authenticated;
+
+		
+		
+		
+	
 		
 		
 	}
