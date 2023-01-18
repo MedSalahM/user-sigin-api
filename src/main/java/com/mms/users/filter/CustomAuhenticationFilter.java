@@ -52,7 +52,6 @@ public class CustomAuhenticationFilter extends  UsernamePasswordAuthenticationFi
 				                          .region(request.getParameter("region")).build();
 		
 	   
-		 System.out.println(login);
 		
 	    String username = login.getUsername();
 		

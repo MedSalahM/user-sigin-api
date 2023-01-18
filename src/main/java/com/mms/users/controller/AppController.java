@@ -2,11 +2,15 @@ package com.mms.users.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mms.users.domain.AppUser;
@@ -23,10 +27,6 @@ public class AppController {
 	
 	private final UserServiceImpl userServiceImpl;
 
-	
-	
-	
-	
 	@GetMapping("home")
 	public ResponseEntity<?> home(Principal principal) {
 		
@@ -57,5 +57,25 @@ public class AppController {
 		
 	}
 	
+	
+	@PutMapping("user")
+	public int update(@RequestBody AppUser user) {
+		
+		
+		return userServiceImpl.editUser(user);
+		
+	}
+	
+	@GetMapping("user/username")
+	public List<String> usernamesByRegion(@RequestParam Optional<String> region){
+		
+		
+		
+		String find = region.orElse("");
+		
+		return userServiceImpl.userNamesByRegion(find);
+		
+		
+	}
 
 }

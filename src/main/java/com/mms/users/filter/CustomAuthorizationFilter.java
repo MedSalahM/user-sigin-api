@@ -30,7 +30,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter{
 		
 		String p = request.getServletPath();
 		
-		boolean path = p.equals("/api/region") || p.equals("/api/login");
+		boolean path = p.equals("/api/region") || p.equals("/api/login") || p.equals("/api/user/username");
 		
 		return  path;
 		

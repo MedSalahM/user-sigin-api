@@ -55,7 +55,7 @@ public class SecurityConfiguration {
          http.csrf().disable();
 		 http.cors(Customizer.withDefaults());
 		 http.authorizeHttpRequests(authz->{
-			                                  authz.requestMatchers("/api/user","/api/region","/h2-console")
+			                                  authz.requestMatchers("/api/user/**","/api/region","/h2-console")
 			                                 .permitAll()
 			                                 .anyRequest().authenticated();
 			                                

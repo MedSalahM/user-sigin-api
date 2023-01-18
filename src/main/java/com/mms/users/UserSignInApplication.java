@@ -56,8 +56,6 @@ public class UserSignInApplication implements CommandLineRunner{
 		        .collect(Collectors.toList());
 
 		 
-
-		    
 		    // Use a Java 8 stream to print out each tuple of the list
 		    splitUpNames.forEach(name -> log.info(String.format("Inserting user record for %s %s %s", name[0], "****" , name[3])));
 

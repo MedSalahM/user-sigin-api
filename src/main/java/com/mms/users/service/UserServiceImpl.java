@@ -57,8 +57,30 @@ public class UserServiceImpl {
 		 return regions;
 		 
 	 }
-	
+	 
+	 
+	 public int editUser(AppUser user)
+	 {
+		 
+		 return userRepo.update(user);
+		 
+		 
+	 }
     
-    
+	 public List<String> userNamesByRegion(String region){
+
+		 List<String> usernames = new ArrayList<>();
+		 
+		 users()
+		 .stream()
+		 .filter(reg->reg.getRegion().equals(region))
+		 .map(AppUser::getUsername)
+		 .forEach(usernames::add);
+		 
+		 
+		 return usernames;
+		 
+	 }
+	 
     
 }

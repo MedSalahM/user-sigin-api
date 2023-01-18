@@ -46,6 +46,24 @@ public class UserRepository {
 	 }
 	 
 	 
-
+	 public int update(AppUser user){
+		 
+		 
+		 
+		 String sqlUpdateUser="update users set username = ? , password = ? where id = ?";
+			
+			
+			
+			
+			Object values []= { user.getUsername(),user.getPassword() , user.getId()} ;
+			
+			int resultAffectation = jdbcTemplate.update(sqlUpdateUser, values);
+			
+			
+		 return resultAffectation;
+	 }
+	 
+	
+	 
 	
 }
