@@ -29,10 +29,6 @@ public class UserSignInApplication implements CommandLineRunner{
 		
 		SpringApplication.run(UserSignInApplication.class, args);
 		
-		
-	     
-		
-		
 	}
 
 
