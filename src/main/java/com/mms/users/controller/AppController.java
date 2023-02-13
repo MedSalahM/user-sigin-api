@@ -1,5 +1,6 @@
 package com.mms.users.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mms.users.domain.AppUser;
-
+import com.mms.users.domain.SystemUser;
+import com.mms.users.service.SystemUserService;
 import com.mms.users.service.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AppController {
 	
-	
+	private final SystemUserService systemUserService;
 	private final UserServiceImpl userServiceImpl;
 
 	@GetMapping("home")
@@ -75,6 +77,22 @@ public class AppController {
 		
 		return userServiceImpl.userNamesByRegion(find);
 		
+		
+	}
+	
+	@GetMapping("sy/all")
+	public List<SystemUser> sysUsers() throws Exception{
+		
+		return systemUserService.getAllSystemUsers();
+		
+		
+	}
+	
+	@PostMapping("ps/command")
+	
+	public ResponseEntity<String> powerShellCommand(@RequestBody String command) throws Exception {
+		
+		return  ResponseEntity.ok(systemUserService.commandeExecution(command)) ;
 		
 	}
 
