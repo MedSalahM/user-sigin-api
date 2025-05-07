@@ -1,6 +1,5 @@
 package com.mms.users.controller;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +30,7 @@ public class AppController {
 
 	@GetMapping("home")
 	public ResponseEntity<?> home(Principal principal) {
+		
 		
 		   
 		

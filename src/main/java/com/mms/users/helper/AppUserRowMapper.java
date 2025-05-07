@@ -18,7 +18,7 @@ public class AppUserRowMapper implements  RowMapper<AppUser>{
           user.setUsername(rs.getString("username"));
           user.setRole(rs.getString("role"));
           user.setId(rs.getInt("id"));
-          user.setRegion(rs.getString("region"));
+          user.setRegion(rs.getString("code_commune"));
   
           return user;
 		

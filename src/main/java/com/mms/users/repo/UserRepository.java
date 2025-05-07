@@ -28,7 +28,7 @@ public class UserRepository {
 	public List<AppUser> allUsers(){
 		
 		
-		var users = jdbcTemplate.query("select * from users", mapper);
+		var users = jdbcTemplate.query("select * from app_user", mapper);
 	
 		
 		return users;
@@ -50,7 +50,7 @@ public class UserRepository {
 		 
 		 
 		 
-		 String sqlUpdateUser="update users set username = ? , password = ? where id = ?";
+		 String sqlUpdateUser="update app_user set username = ? , password = ? where id = ?";
 			
 			
 			

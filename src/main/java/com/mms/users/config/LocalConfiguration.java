@@ -35,7 +35,7 @@ public class LocalConfiguration {
 	}
 	
 	
-	@Bean
+	/*@Bean
 	public DataSource dataSource() {
 		
 		
@@ -45,7 +45,7 @@ public class LocalConfiguration {
 		
 		return ds;
 	}
-
+  */
 	
 	
 }
